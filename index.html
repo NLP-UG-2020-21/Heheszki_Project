@@ -7,6 +7,20 @@
         <link rel="stylesheet" href="stylesheet.css">
     </head>
     <body>
-        
+        <!-- Buttons, text input -->
+        <div class = "transcription-input">
+            <div class="choose-transcription">
+                <input class="input-radio" value="ipa" type="radio" name="transcription-type">
+                <label for="ipa">IPA</label>
+                <input class="input-radio" value="xsampa" type="radio" name="transcription-type">
+                <label for="xsampa">X-SAMPA</label> 
+                <input class="input-radio" value="tipa" type="radio" name="transcription-type">
+                <label for="tipa">TIPA</label>  
+            </div>   
+            <div class="type-text">
+                <textarea id="text-to-transcribe" class="input-text" name="text-to-transcribe" placeholder="Type text to transcribe"></textarea>
+            </div>
+            <button type="submit" id="transcribe-button" class="do-button">Transcribe</button>
+        </div>
     </body>
 </html>
