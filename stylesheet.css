@@ -95,19 +95,19 @@ main {
   border: none;
 }
 
-#text-section {
+.text-section {
   font-size: 13px;
   width: 100%;
   margin-top: 80px;
   margin-bottom: 60px;
 }
 
-#section-title {
+.section-title {
   font-weight: bold;
   margin-bottom: 17px;
 }
 
-#section-text {
+.section-text {
   line-height: 1.3;
   text-align: justify;
 }
