@@ -112,3 +112,21 @@ main {
   line-height: 1.3;
   text-align: justify;
 }
+
+h2 {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    padding-bottom: 20px;
+}
+
+#patreon {
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+  
+#paypal {
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+  }
