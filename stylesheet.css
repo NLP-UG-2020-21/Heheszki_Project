@@ -15,6 +15,7 @@ body {
   font-family: arial;
   margin-right: 20%;
   margin-left: 20%;
+  margin-bottom: 70px;
 }
   
 /* header */
@@ -62,16 +63,21 @@ main {
 }
 
 .title {
-  margin-top: 130px;
-  margin-bottom: 80px;
-  font-size: 40px;
+  margin-bottom: 30px;
+  font-size: 30px;
   text-align: center;
+  color: var(--accent);
 }
+
+#project-title {
+  margin-top: 70px;
+}
+
 
 /* transcribing section */
 
 #paste-or-type-text {
-  font-size: 16px;
+  font-size: 14px;
   padding-bottom: 10px;
 }
 
@@ -96,11 +102,18 @@ main {
   border: none;
 }
 
+.in-text-button {
+  padding: 4px 4px;
+  color: var(--header-links);
+  background-color: var(--accent);
+  border: none;
+}
+
 .text-section {
   font-size: 13px;
   width: 100%;
-  margin-top: 80px;
-  margin-bottom: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .section-title {
@@ -111,4 +124,52 @@ main {
 .section-text {
   line-height: 1.3;
   text-align: justify;
+}
+
+#patreon {
+    font-size: 20px;
+    text-align: center;
+}
+  
+#paypal {
+    font-size: 20px;
+    text-align: center;
+  }
+
+#page-title {
+  margin-top: 100px;
+}
+
+.our-photos {
+  width: 186x;
+  height: 186px;
+  padding: 0.5px;
+}
+
+.collapsible {
+  background-color: #127780;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #0c4d53;
+}
+
+.content {
+  padding: 0 18px;
+  color: white;
+  display: none;
+  overflow: hidden;
+  background-color: #18a1ad;
+}
+
+#please-donate {
+  font-size: 16px;
 }
