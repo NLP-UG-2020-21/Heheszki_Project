@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title></title>
+        <title>Trans it</title>
         <link rel="stylesheet" href="stylesheet.css">
-        <script src="javascript.js"></script> 
+        <script src="script.js"></script> 
     </head>
     <body>
         <header>
@@ -13,10 +13,10 @@
             
             <navbar>
                 <a href="index.html">Home</a>
-                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
                 <a href="FAQ.html">FAQ</a>
-                <a href="menu.html">Menu</a>
                 <a href="tutorial.html">Tutorial</a>
+                <a href="donate.html">Donate</a>
             </navbar>
 
         </header>
@@ -24,11 +24,21 @@
     <!-- Main -->
         <main>
             <!-- Project title text -->
-            <div class = "title">Project Title</div>
+            
+            <div class = "title" id ="project-title"><img src = "logo.png"><br>Trans It</div>
+
+            <!-- text section -->
+             <section class="text-section">
+                <div class="section-title">Hello! Welcome to our project!
+                </div>
+                <div class="section-text">We are aiming to create an automatic software that is able to transcribe two languages: English and Polish, in that case. You can insert a text and you will have it transcribed. The software supports mainly *IPA* ([International Phonetic Alphabet]). It is especially crucial and useful for any language students, since phonetic alphabets could help you learn how to pronounce particular words.
+
+                    If you have any questions or you want to give us a piece of advice, do not hestitate to contact us. Please keep in mind our tool is still in development. Therefore, the results may not be error free.</div>
+             </section>
 
             <!-- Buttons, text input for transcribing -->
             <section id = "transcribe-input-section">
-                <div id = "paste-or-type-text">Paste or type your text below:</div>
+                <div id = "paste-or-type-text">Paste, type or <button type="button" id="mic-button" class="in-text-button">dictate 🎤</button> your text below:</div>
                 <div class = "transcription-input">
             <!-- Buttons for choosing the type - to uncomment later?
                 <div class="choose-transcription">
@@ -41,15 +51,11 @@
                 </div> -->
                 <div class="type-text">
                     <textarea id="text-to-transcribe" class="input-text" name="text-to-transcribe" placeholder="Type text to transcribe"></textarea>
-                    <div id="characters-count">Allowed maximum of x characters</div>
+                    <div id="characters-count">Allowed maximum of 500 characters</div>
                 </div>
-                <button type="submit" id="transcribe-button" class="do-button">Transcribe</button>
+                 <button type="submit" id="transcribe-button" class="do-button">Transcribe</button>
                 </div>
-             </section>
-            <!-- text section, to copy for information tabs -->
-             <section class="text-section">
-                <div class="section-title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</div>
-                <div class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis nisi, laoreet nec odio vitae, malesuada sodales dolor. Donec sem dolor, blandit sit amet odio sit amet, ornare dapibus nulla. Ut ac viverra sem. Vestibulum mollis facilisis massa, ut laoreet dolor iaculis ut. Curabitur sit amet elit eu augue aliquam tincidunt eu id nisl. Sed facilisis dolor vitae neque vulputate bibendum. In dictum vitae odio id hendrerit. Donec nec nunc non dolor tempor consectetur. Donec vehicula eget lorem at congue. Nulla vel mauris bibendum, faucibus ipsum sit amet, malesuada ante. Suspendisse diam ipsum, mollis eget facilisis vel, facilisis et felis. Nam hendrerit tortor lorem, vel elementum ipsum ultricies sed. Vestibulum non ultrices diam. Duis mollis urna purus, in finibus mi dictum congue. Ut tempor tellus eget diam hendrerit, non suscipit dui gravida.</div>
+            </div>
              </section>
         </main>
     </body>
