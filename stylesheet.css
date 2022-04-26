@@ -7,6 +7,7 @@
   --main-text-color: #000000;
   --accent: #38c087;
   --text-input-area: #efefef;
+  --dropdown-text: #ffffff;
 }
 
 /* styling body */
@@ -73,6 +74,21 @@ main {
   margin-top: 70px;
 }
 
+/*Choose language */
+
+.language-selection {
+  font-size: 14px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+#dropdown {
+  color: var(--dropdown-text);
+  background-color: var(--accent);
+  height: 25px;
+  width: 110px;
+}
+
 
 /* transcribing section */
 
@@ -93,7 +109,6 @@ main {
   padding-bottom: 3px;
   text-align: right;
 }
-
 
 .do-button {
   color: var(--header-links);
@@ -117,7 +132,6 @@ main {
   margin-bottom: 20px;
 }
 
-
 .section-title {
   font-weight: bold;
   margin-bottom: 17px;
@@ -128,22 +142,21 @@ main {
   text-align: justify;
 }
 
+#output-text {
+  padding: 10px;
+}
+
+/* donate */
 
 #patreon {
     font-size: 20px;
     text-align: center;
-
-h2 {
-    font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    padding-bottom: 20px;
 }
   
 #paypal {
     font-size: 20px;
     text-align: center;
   }
-
 
 #page-title {
   margin-top: 100px;
@@ -152,7 +165,6 @@ h2 {
 .our-photos {
   width: 24%;
 }
-
 
 .collapsible {
   background-color: #127780;
@@ -182,15 +194,3 @@ h2 {
   font-size: 16px;
 }
 
-/*
-#patreon {
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-}
-  
-#paypal {
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-  } */
