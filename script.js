@@ -16,6 +16,16 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+// Language selection
+
+var selectedLang = "en-EN";
+
+document.getElementById('language-dropdown').addEventListener('change', function() {
+  var selectedLang = this.value;
+  console.log('You selected: ', selectedLang);
+  recognition.lang = selectedLang;
+});
+
 // Voice recognition
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
@@ -25,7 +35,7 @@ var recognition = new SpeechRecognition();
 var synth = window.speechSynthesis;
 
 recognition.continuous = false;
-recognition.lang = 'en-EN';
+
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
@@ -33,6 +43,7 @@ var startButton = document.querySelector("#mic-button");
 
 startButton.onclick = function() {
     recognition.start();
+    console.log('Speech recognition language:', recognition.lang);
     console.log('Start speaking!');
 }
 
@@ -48,6 +59,19 @@ recognition.onresult = function(event) {
 recognition.onspeechend = function() {
     recognition.stop();
 }
+
+
+// Transcription
+
+var mydata = JSON.parse(UK_dict);
+
+console.log(mydata);
+
+document.getElementById('transcribe-button').addEventListener('click', function() {
+  var inputText = document.getElementById('text-to-transcribe').value.toLowerCase();
+  console.log('Input text: ', inputText);
+});
+
 
 
 }

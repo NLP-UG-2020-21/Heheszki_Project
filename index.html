@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trans it</title>
         <link rel="stylesheet" href="stylesheet.css">
-        <script src="script.js"></script> 
+        <script type="text/javascript" src="script.js"></script> 
+        <!-- jsons -->
+        <script type="text/javascript" src="en_UK.json"></script>
     </head>
     <body>
         <header>
@@ -40,12 +42,13 @@
             <section id = "transcribe-input-section">
                 <div class = "language-selection">
                     <label for="language">Choose language:</label>
-                    <select id="dropdown">
-                        <option value="UK">English (UK)</option>
+                    <select class="dropdown" id="language-dropdown">
+                        <option value="en-EN" selected>English (UK)</option>
                         <option value="US">English (US)</option>
-                        <option value="lang1">Languagish</option>
-                        <option value="lang2">Languagish 2</option>
-                    </select></div>
+                        <option value="ja">Japanese</option>
+                        <option value="zh-CN">Chinese (Simplified)</option>
+                    </select>
+                </div>
                 <div id = "paste-or-type-text">Paste, type or <button type="button" id="mic-button" class="in-text-button">dictate 🎤</button> your text below:</div>
                 <div class = "transcription-input">
             <!-- Buttons for choosing the type - to uncomment later?
