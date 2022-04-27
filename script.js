@@ -63,15 +63,33 @@ recognition.onspeechend = function() {
 
 // Transcription
 
-var mydata = JSON.parse(UK_dict);
-
-console.log(mydata);
-
 document.getElementById('transcribe-button').addEventListener('click', function() {
-  var inputText = document.getElementById('text-to-transcribe').value.toLowerCase();
-  console.log('Input text: ', inputText);
-});
+  var inputText = document.getElementById('text-to-transcribe').value.toLowerCase().split(/([\.|,|:|;|\n])\s{0,1}/);
+  console.log(inputText);
 
+  transcribedText = [];
 
+  for (const sentence of inputText) {
+    var sentenceArray = sentence.split(" ");
+    transcribedText.push(transcribeUK(sentenceArray));
+  }
 
-}
+  document.getElementById("output-text").innerHTML = transcribedText.filter(checkifvalid).join(" ");
+
+  function checkifvalid(text){
+    return text != '//';
+  }
+
+  function transcribeUK(inputSentence) {
+    var transcribedSen = [];
+    for (const word of inputSentence) {
+      var transcribedWord = UK_dict[word];
+      console.log(transcribedWord);
+      if (transcribedWord == undefined) {
+        transcribedSen.push('');
+      } else {
+      transcribedSen.push(transcribedWord)
+    }};
+    return '/'+transcribedSen.join(" ")+'/';
+  }
+});}
