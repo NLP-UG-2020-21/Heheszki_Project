@@ -36,6 +36,8 @@ document.getElementById('transcribe-button').addEventListener('click', function(
 
   document.getElementById('hiraganatext').value = '';
   document.getElementById('hiraganatext').textContent = '';
+  document.getElementById('romajitext').value = '';
+  document.getElementById('romajitext').textContent = '';
   document.getElementById('katakanatext').value = '';
   document.getElementById('katakanatext').textContent = '';
   document.getElementById('pinyintext').value = '';
@@ -88,25 +90,26 @@ document.getElementById('transcribe-button').addEventListener('click', function(
           }
         }
         // Japanese but it didn't work properly
-        // while (selectedLang == 'ja' && dictionary.hasOwnProperty(clause) == false){
-        //   if (transcribeWord(clause.split("").pop(), selectedLang) == undefined) {
-        //     console.log(transcribeWord(clause.split("").pop(), selectedLang))
-        //     console.log(clause.split("").slice(0, -1).join(""))
-        //     clause = clause.split("").slice(0, -1).join("");
-            
-        //   }
-        //   left.push(clause.split("").pop());
-        //   // console.log(left)
-        //   clause = clause.split("").slice(0, -1).join("");
-        //   if (clause.length == 0) {
-        //     break
-        //   }
-        // }
+        while (selectedLang == 'ja' && dictionary.hasOwnProperty(clause) == false){
+          if (transcribeWord(clause.split("").pop(), selectedLang) == undefined) {
+            console.log(transcribeWord(clause.split("").pop(), selectedLang))
+            console.log(clause.split("").slice(0, -1).join(""))
+            clause = clause.split("").slice(0, -1).join("");
+          }
+          left.push(clause.split("").pop());
+          // console.log(left)
+          clause = clause.split("").slice(0, -1).join("");
+          if (clause.length == 0) {
+            break
+          }
+        }
+        console.log(transcribeWord(clause, selectedLang));
         IPASen.push(transcribeWord(clause, selectedLang));
         clause = left.reverse().join("");
+        console.log(IPASen)
         left = [];
       }
-      IPAText.push("/"+IPASen.filter((a) => a)+"/");
+      IPAText.push("/"+IPASen.filter((a) => a).join(" ")+"/");
       IPASen = [];
     }
 
@@ -267,10 +270,11 @@ document.getElementById('transcribe-button').addEventListener('click', function(
   
 
   
-  if (selectedLang == "ja"){
-    IPAText = []; //So the japanese IPA won't appear for know
-  }; 
+  // if (selectedLang == "ja"){
+  //   IPAText = []; //So the japanese IPA won't appear for know
+  // }; 
 
+  console.log(IPAText)
   if (IPAText.length != 0){
     // document.getElementById("ipatext").innerHTML = '<b>IPA:</b> ' + IPAText.filter(checkifvalid).join(" ");
     ipatext.innerHTML = "";
