@@ -28154,7 +28154,7 @@ const UK_dict = {
     "hysterically": "hɪstˈɛɹɪkli",
     "hysteric": "hɪstˈɛɹɪk",
     "hysterics": "hɪstˈɛɹɪks",
-    "I": "ˈa‍ɪ",
+    "i": "ˈa‍ɪ",
     "iambic": "ˈi‍əmbɪk",
     "iatrogenic": "ˌa‍ɪɐtɹə‍ʊd‍ʒˈɛnɪk",
     "ibex": "ˈa‍ɪbɛks",
