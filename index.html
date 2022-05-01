@@ -6,8 +6,14 @@
         <title>Trans it</title>
         <link rel="stylesheet" href="stylesheet.css">
         <script type="text/javascript" src="script.js"></script> 
-        <!-- jsons -->
-        <script type="text/javascript" src="en_UK.js"></script>
+        <script src="scripts/jquery-3.6.0.min.js"></script>
+        <!-- languages -->
+        <script type="text/javascript" src="scripts/en_UK.js"></script>
+        <script type="text/javascript" src="scripts/en_US.js"></script>
+        <script type="text/javascript" src="scripts/zh_hans.js"></script>
+        <script type="text/javascript" src="scripts/ja.js"></script>
+        <script src="scripts/wanakana.min.js"></script>
+        <script type="text/javascript" src="scripts/pinyin_converter.js"></script>
     </head>
     <body>
         <header>
@@ -44,9 +50,9 @@
                     <label for="language">Choose language:</label>
                     <select class="dropdown" id="language-dropdown">
                         <option value="en-EN" selected>English (UK)</option>
-                        <option value="US">English (US)</option>
-                        <option value="ja">Japanese</option>
+                        <option value="en-US">English (US)</option>
                         <option value="zh-CN">Chinese (Simplified)</option>
+                        <option value="ja">Japanese</option>
                     </select>
                 </div>
                 <div id = "paste-or-type-text">Paste, type or <button type="button" id="mic-button" class="in-text-button">dictate 🎤</button> your text below:</div>
@@ -67,8 +73,14 @@
                  <button type="submit" id="transcribe-button" class="do-button">Transcribe</button>
                 </div>
 
-                <section class="text-section">
-                    <div class="section-text" id="output-text"></div>
+                <section class="text-section" id = "output-text">
+                    <p class="text-output" id="romajitext"></p>
+                    <p class="text-output" id="hiraganatext"></p>
+                    <p class="text-output" id="katakanatext"></p>
+                    <p class="text-output" id="pinyintext"></p>
+                    <p class="text-output" id="ipatext"></p>
+                    <p class="text-output" id="x-sampa-text"></p>
+                    <p class="text-output" id="tipa-text"></p>
                  </section>
                 
             </div>
