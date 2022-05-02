@@ -5,19 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trans it</title>
         <link rel="stylesheet" href="stylesheet.css">
-        <script type="text/javascript" src="script.js"></script> 
+        <script type="text/javascript" src="script.js"></script>
         <script src="scripts/jquery-3.6.0.min.js"></script>
-        <!-- languages -->
+        <script src="https://kit.fontawesome.com/c55b3adb40.js" crossorigin="anonymous"></script>
+        <!-- dictionaries -->
         <script type="text/javascript" src="scripts/en_UK.js"></script>
         <script type="text/javascript" src="scripts/en_US.js"></script>
         <script type="text/javascript" src="scripts/zh_hans.js"></script>
         <script type="text/javascript" src="scripts/ja.js"></script>
+        <!-- plugins -->
         <script src="scripts/wanakana.min.js"></script>
         <script type="text/javascript" src="scripts/pinyin_converter.js"></script>
     </head>
     <body>
         <header>
-            <div id = "header-logo">Uniwersytet Gdański</div>
+            <div id = "header-switch"><div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>    
+              </label>
+              <div class = "slider-label">
+                  <div id="sun" style="display:none"><i class="fa-solid fa-sun"></i></div>
+                  <div id="moon"><i class="fa-solid fa-moon"></i></div>
+            </div></div>
             
             <navbar>
                 <a href="index.html">Home</a>
@@ -67,8 +77,8 @@
                 <label for="tipa">TIPA</label>  
                 </div> -->
                 <div class="type-text">
-                    <textarea id="text-to-transcribe" class="input-text" name="text-to-transcribe" placeholder="Type text to transcribe"></textarea>
-                    <div id="characters-count">Allowed maximum of 500 characters</div>
+                    <textarea id="text-to-transcribe" class="input-text" name="text-to-transcribe" placeholder="Type text to transcribe" maxlength="1000"></textarea>
+                    <div id="characters-count">0/1000</div>
                 </div>
                  <button type="submit" id="transcribe-button" class="do-button">Transcribe</button>
                 </div>

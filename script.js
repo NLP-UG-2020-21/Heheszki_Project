@@ -16,6 +16,25 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+//Dark mode
+
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById("sun").style.display = "block";
+        document.getElementById("moon").style.display = "none";
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.getElementById("sun").style.display = "none";
+        document.getElementById("moon").style.display = "block";
+    }    
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+
 // Language selection
 
 var selectedLang = "en-EN"; //default language
@@ -25,6 +44,20 @@ document.getElementById('language-dropdown').addEventListener('change', function
   console.log('You selected: ', selectedLang);
   recognition.lang = selectedLang;
 });
+
+//Counters
+
+let textArea = document.getElementById("text-to-transcribe");
+let characterCounter = document.getElementById("characters-count");
+const maxNumOfChars = 1000;
+
+const countCharacters = () => {
+  let numOfEnteredChars = textArea.value.length;
+  let counter = numOfEnteredChars;
+  characterCounter.textContent = counter + "/1000";
+};
+
+textArea.addEventListener("input", countCharacters);
 
 //Transcription
 
