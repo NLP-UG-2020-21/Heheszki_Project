@@ -9,21 +9,24 @@
   --text-input-area: #efefef;
   --dropdown-text: #ffffff;
   --dark-mode-slider: #ccc;
+  --links-hover: #276166;
 }
 
 [data-theme="dark"] {
-  --main-background: #15251c;
+  --main-background: #212423;
   --header-logo: #ffffff;
   --header-links: #ffffff;
-  --header-links-hover: #38c087;
+  --header-links-hover: #0e1311;
   --main-text-color: #ffffff;
-  --accent: #1e6849;
-  --text-input-area: #415a4c;
+  --accent: #27c498;
+  --text-input-area: #0e1311;
   --dropdown-text: #ffffff;
-  --dark-mode-slider: #415a4c;
+  --dark-mode-slider: #0e1311;
+  --links-hover: #276166;
 }
 
 /* styling body */
+
 body {
   background-color: var(--main-background);
   font-family: arial;
@@ -50,7 +53,6 @@ header {
   margin-left: 30px;
   color: var(--header-logo)
 }
-
 
 /*Simple css to style it like a toggle switch*/
 .theme-switch-wrapper {
@@ -80,7 +82,6 @@ header {
   position: absolute;
   right: 0;
   top: 0;
-  transition: .4s;
 }
 
 .slider:before {
@@ -90,16 +91,17 @@ header {
   height: 26px;
   left: 4px;
   position: absolute;
-  transition: .4s;
+  /* transition: .4s; */
   width: 26px;
 }
 
 input:checked + .slider {
-  background-color: #66bb6a;
+  background-color: var(--dark-mode-slider);
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  /* transform: translateX(26px); */
+  left: 30px;
 }
 
 .slider.round {
@@ -132,6 +134,10 @@ navbar a {
 
 navbar a:hover {
   color: var(--header-links-hover);
+}
+
+.mobile-menu {
+  display: none;
 }
 
 /* main */
@@ -272,3 +278,104 @@ main {
   font-size: 16px;
 }
 
+.credits li {
+  line-height: 2;
+}
+
+a {
+  color: var(--accent)
+}
+
+a:hover {
+  color: var(--links-hover)
+}
+
+/* For mobile - adjust later */
+
+@media only screen and (max-device-width: 480px) {
+  body {
+    margin-right: 8%;
+    margin-left: 8%;
+    margin-bottom: 20px;
+  }
+    
+  /* header */
+  header {
+    position: fixed;;
+    height: 30px;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  #header-logo {
+    padding: 18px 16px;
+    font-size: 23px;
+    margin-left: 30px;
+  }
+  
+  
+  /*Simple css to style it like a toggle switch*/
+  .theme-switch-wrapper {
+    padding: 5px 4px;
+    font-size: 15px;
+    margin-left: 2px;
+  }
+  .theme-switch {
+    height: 20px;
+    width: 35px;
+  }
+  
+  .slider:before {
+    bottom: 0px;
+    height: 20px;
+    left: 0px;
+    width: 20px;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(15px);
+  }
+  
+  /* header menu */
+  navbar{
+    float: right;
+    text-align: center;
+    padding: 0px 1px;
+  }
+  
+  navbar a {
+    color: var(--header-links);
+    text-decoration: none;
+    height: 100%;
+    margin-right: 25px;
+    font-size: 15px;
+  }
+  
+  navbar a:hover {
+    color: var(--header-links-hover);
+  }
+
+  .mobile-menu {
+    display: block;
+    
+  }
+  
+  /* main */
+  main {
+    margin-top: 65px;
+    color: var(--main-text-color);
+  }
+  
+  .title {
+    margin-bottom: 30px;
+    font-size: 30px;
+    text-align: center;
+    color: var(--accent);
+  }
+  
+  #project-title {
+    margin-top: 70px;
+  }
+
+  
+}

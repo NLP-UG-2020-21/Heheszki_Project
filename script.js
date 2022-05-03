@@ -18,22 +18,37 @@ for (i = 0; i < coll.length; i++) {
 
 //Dark mode
 
+
+
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
-function switchTheme(e) {
-    if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.getElementById("sun").style.display = "block";
-        document.getElementById("moon").style.display = "none";
-    }
-    else {
+function save() {	
+	var checkbox = document.getElementById("checkbox");
+    localStorage.setItem("checkbox", checkbox.checked);	
+}
+
+// //for loading
+var checked = JSON.parse(localStorage.getItem("checkbox"));
+    document.getElementById("checkbox").checked = checked;
+    switchTheme()
+
+toggleSwitch.addEventListener('change', save);
+toggleSwitch.addEventListener('change', switchTheme);
+
+
+function switchTheme() {
+  const check = document.getElementById("checkbox").checked
+  if (check == true) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.getElementById("sun").style.display = "block";
+      document.getElementById("moon").style.display = "none";
+  }
+  else {
         document.documentElement.setAttribute('data-theme', 'light');
         document.getElementById("sun").style.display = "none";
         document.getElementById("moon").style.display = "block";
-    }    
+  }
 }
-
-toggleSwitch.addEventListener('change', switchTheme, false);
 
 // Language selection
 
@@ -256,7 +271,7 @@ document.getElementById('transcribe-button').addEventListener('click', function(
             let r = document.createElement("r");
             const rspaces = /[\s]*/g;
 
-            let innerContent = `<b>Romaji:</b> ${wanakana.toRomaji(data["converted"])}`;
+            let innerContent = `<b>Romaji:</b> ${wanakana.toRomaji(data["converted"], { upcaseKatakana: true })}`;
             r.innerHTML = innerContent;
             romajitext.appendChild(r) 
           }
