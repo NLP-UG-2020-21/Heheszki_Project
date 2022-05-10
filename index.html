@@ -5,18 +5,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trans it</title>
         <link rel="stylesheet" href="stylesheet.css">
-        <script src="script.js"></script> 
+        <script type="text/javascript" src="script.js"></script>
+        <script src="scripts/jquery-3.6.0.min.js"></script>
+        <script src="https://kit.fontawesome.com/c55b3adb40.js" crossorigin="anonymous"></script>
+        <!-- dictionaries -->
+        <script type="text/javascript" src="scripts/en_UK.js"></script>
+        <script type="text/javascript" src="scripts/en_US.js"></script>
+        <script type="text/javascript" src="scripts/zh_hans.js"></script>
+        <script type="text/javascript" src="scripts/ja.js"></script>
+        <!-- plugins -->
+        <script src="scripts/wanakana.min.js"></script>
+        <script type="text/javascript" src="scripts/pinyin_converter.js"></script>
     </head>
     <body>
         <header>
-            <div id = "header-logo">Uniwersytet Gdański</div>
+            <div id = "header-switch"><div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>    
+              </label>
+              <div class = "slider-label">
+                  <div id="sun" style="display:none"><i class="fa-solid fa-sun"></i></div>
+                  <div id="moon"><i class="fa-solid fa-moon"></i></div>
+            </div></div>
             
-            <navbar>
+            <!-- <div class = "mobile-menu"><i class="fa-solid fa-align-justify"></i></div> -->
 
+            <navbar>
                 <a href="index.html">Home</a>
                 <a href="team.html">Team</a>
-                <a href="FAQ.html">FAQ</a>
+                <a href="faq.html">FAQ</a>
                 <a href="tutorial.html">Tutorial</a>
+                <a href="credits.html">Credits</a>
                 <a href="donate.html">Donate</a>
             </navbar>
 
@@ -30,34 +50,46 @@
 
             <!-- text section -->
              <section class="text-section">
-                <div class="section-title">Hello! Welcome to our project!
-                </div>
-                <div class="section-text">We are aiming to create an automatic software that is able to transcribe two languages: English and Polish, in that case. You can insert a text and you will have it transcribed. The software supports mainly *IPA* ([International Phonetic Alphabet]). It is especially crucial and useful for any language students, since phonetic alphabets could help you learn how to pronounce particular words.
-
-                    If you have any questions or you want to give us a piece of advice, do not hestitate to contact us. Please keep in mind our tool is still in development. Therefore, the results may not be error free.</div>
+                <div class="section-title">Hello! Welcome to our project!</div>
+                <div class="section-text">
+                    <p>We are aiming to create an automatic software that is able to transcribe two languages: English and Polish, in that case. You can insert a text and you will have it transcribed. The software supports mainly *IPA* ([International Phonetic Alphabet]). It is especially crucial and useful for any language students, since phonetic alphabets could help you learn how to pronounce particular words.</p>
+                    <p>If you have any questions or you want to give us a piece of advice, do not hestitate to contact us. Please keep in mind our tool is still in development. Therefore, the results may not be error free.</p></div>
              </section>
 
-            <!-- Buttons, text input for transcribing -->
+            <!-- Choose language -->
             <section id = "transcribe-input-section">
+                <div class = "language-selection">
+                    <label for="language">Choose language:</label>
+                    <select class="dropdown" id="language-dropdown">
+                        <option value="en-EN" selected>English (UK)</option>
+                        <option value="en-US">English (US)</option>
+                        <option value="zh-CN">Chinese (Simplified)</option>
+                        <option value="ja">Japanese</option>
+                    </select>
+                </div>
+
+            <!-- Input text area -->
                 <div id = "paste-or-type-text">Paste, type or <button type="button" id="mic-button" class="in-text-button">dictate 🎤</button> your text below:</div>
                 <div class = "transcription-input">
-            <!-- Buttons for choosing the type - to uncomment later?
-                <div class="choose-transcription">
-                <input class="input-radio" value="ipa" type="radio" name="transcription-type">
-                <label for="ipa">IPA</label>
-                <input class="input-radio" value="xsampa" type="radio" name="transcription-type">
-                <label for="xsampa">X-SAMPA</label> 
-                <input class="input-radio" value="tipa" type="radio" name="transcription-type">
-                <label for="tipa">TIPA</label>  
-                </div> -->
-                <div class="type-text">
-                    <textarea id="text-to-transcribe" class="input-text" name="text-to-transcribe" placeholder="Type text to transcribe"></textarea>
-                    <div id="characters-count">Allowed maximum of 500 characters</div>
+                    <div class="type-text">
+                        <textarea id="text-to-transcribe" class="input-text" name="text-to-transcribe" placeholder="Type text to transcribe" maxlength="1000"></textarea>
+                        <div id="characters-count">0/1000</div>
+                    </div>
+                    <button type="submit" id="transcribe-button" class="do-button">Transcribe</button>
                 </div>
-                 <button type="submit" id="transcribe-button" class="do-button">Transcribe</button>
-                </div>
-            </div>
-             </section>
+
+            <!-- Output -->
+                <section class="text-section" id = "output-text">
+                    <p class="text-output" id="romajitext"></p>
+                    <p class="text-output" id="hiraganatext"></p>
+                    <p class="text-output" id="katakanatext"></p>
+                    <p class="text-output" id="pinyintext"></p>
+                    <p class="text-output" id="ipatext"></p>
+                    <p class="text-output" id="x-sampa-text"></p>
+                    <p class="text-output" id="tipa-text"></p>
+                 </section>
+                
+            </section>
         </main>
     </body>
 </html>
