@@ -57813,6 +57813,7 @@ const UK_dict = {
     "thawing": "θˈɔːɹɪŋ",
     "thaws": "θˈɔːz",
     "thaw": "θˈɔː",
+    "the": "ˈðə",
     "theaters": "θˈi‍ətəz",
     "theater": "θˈi‍ətɐ",
     "theatregoers": "θˈi‍ətɹɪɡˌə‍ʊəz",

@@ -40,15 +40,36 @@ function switchTheme() {
   const check = document.getElementById("checkbox").checked
   if (check == true) {
       document.documentElement.setAttribute('data-theme', 'dark');
-      document.getElementById("sun").style.display = "block";
-      document.getElementById("moon").style.display = "none";
+      document.getElementById("moon").style.display = "block";
+      document.getElementById("sun").style.display = "none";
   }
   else {
         document.documentElement.setAttribute('data-theme', 'light');
-        document.getElementById("sun").style.display = "none";
-        document.getElementById("moon").style.display = "block";
+        document.getElementById("moon").style.display = "none";
+        document.getElementById("sun").style.display = "block";
   }
 }
+
+
+document.getElementById('mobile-button').addEventListener('click', displaymenu);
+
+function displaymenu() {
+  if (document.getElementById("mobile-menu").style.display == "none"||document.getElementById("mobile-menu").style.display == ""){
+    document.getElementById("mobile-menu").style.display = "block";
+  } else {
+    document.getElementById("mobile-menu").style.display = "none";
+  }
+};
+
+document.getElementById('mobile-button-sub').addEventListener('click', displaymenusub);
+
+function displaymenusub() {
+  if (document.getElementById("mobile-menu-sub").style.display == "none"||document.getElementById("mobile-menu-sub").style.display == ""){
+    document.getElementById("mobile-menu-sub").style.display = "block";
+  } else {
+    document.getElementById("mobile-menu-sub").style.display = "none";
+  }
+};
 
 // Language selection
 
@@ -88,10 +109,16 @@ document.getElementById('transcribe-button').addEventListener('click', function(
   document.getElementById('romajitext').textContent = '';
   document.getElementById('katakanatext').value = '';
   document.getElementById('katakanatext').textContent = '';
+  document.getElementById('numpinyintext').value = '';
+  document.getElementById('numpinyintext').textContent = '';
   document.getElementById('pinyintext').value = '';
   document.getElementById('pinyintext').textContent = '';
   document.getElementById('ipatext').value = '';
   document.getElementById('ipatext').textContent = '';
+  document.getElementById('tipatext').value = '';
+  document.getElementById('tipatext').textContent = '';
+  document.getElementById('xsampatext').value = '';
+  document.getElementById('xsampatext').textContent = '';
 
   
   var inputText = document.getElementById('text-to-transcribe').value;
@@ -105,8 +132,8 @@ document.getElementById('transcribe-button').addEventListener('click', function(
     inputText = inputText.toLowerCase().split(/[[\.]|[\?]|[\!]|[\n]]*/);
     for (const sentence of inputText) {
       var sentenceArray = sentence.split(" ").filter((a) => a);
-      console.log(sentenceArray)
       IPAText.push(transcribeSentence(sentenceArray, selectedLang));
+      console.log('starting IPA:', IPAText);
     }
   };
 
@@ -124,13 +151,11 @@ document.getElementById('transcribe-button').addEventListener('click', function(
     };
     var left = [];
     for (clause of sentences) {
-      console.log(clause)
       while (clause.length != 0){
         while (selectedLang == 'zh-CN' && dictionary.hasOwnProperty(clause) == false){
           if (transcribeWord(clause.split("").pop(), selectedLang) == undefined) {
             clause = clause.split("").slice(0, -1).join("");
           }
-          console.log(clause)
           left.push(clause.split("").pop());
           clause = clause.split("").slice(0, -1).join("");
           if (clause.length == 0) {
@@ -140,21 +165,16 @@ document.getElementById('transcribe-button').addEventListener('click', function(
         // Japanese but it didn't work properly
         while (selectedLang == 'ja' && dictionary.hasOwnProperty(clause) == false){
           if (transcribeWord(clause.split("").pop(), selectedLang) == undefined) {
-            console.log(transcribeWord(clause.split("").pop(), selectedLang))
-            console.log(clause.split("").slice(0, -1).join(""))
             clause = clause.split("").slice(0, -1).join("");
           }
           left.push(clause.split("").pop());
-          // console.log(left)
           clause = clause.split("").slice(0, -1).join("");
           if (clause.length == 0) {
             break
           }
         }
-        console.log(transcribeWord(clause, selectedLang));
         IPASen.push(transcribeWord(clause, selectedLang));
         clause = left.reverse().join("");
-        console.log(IPASen)
         left = [];
       }
       IPAText.push("/"+IPASen.filter((a) => a).join(" ")+"/");
@@ -163,25 +183,28 @@ document.getElementById('transcribe-button').addEventListener('click', function(
 
     //Chinese: Pinyin API
     if (selectedLang == 'zh-CN') {
-      console.log(inputText)
       const rdot = /。/g;
       const rcomma = /，/g;
       let url = 'https://helloacm.com/api/pinyin/?cached&s=' + inputText.replace(rdot,".").replace(rcomma,",").replace(/[\s]+/,"") + '&t=1';
-      console.log(url);
 
 
       fetch(url)
       .then(response => response.json())
       .then(response => {
 
+        numpinyintext.innerHTML = "";
         pinyintext.innerHTML = "";
         let p = document.createElement("p");
         const regex = /(,[a-z1-9]*)/g;
         const rdots = /\s\./g;
         const rcommas = /\s\,/g;
         
-        let innerContent = `<p><b>Numerical Pinyin:</b> ${response["result"].join(" ").replaceAll(regex,"").replaceAll(rdots,'.').replaceAll(rcommas,',')}</p>
-        <p><b>Pinyin:</b> ${PinyinConverter.convert(response["result"].join(" ").replaceAll(regex,"").replaceAll(rdots,'.').replaceAll(rcommas,','))}</p>`;
+        let innerContent = `<b>Numerical Pinyin:</b> ${response["result"].join(" ").replaceAll(regex,"").replaceAll(rdots,'.').replaceAll(rcommas,',')}`;
+        p.innerHTML = innerContent;
+        numpinyintext.appendChild(p);
+
+        p = document.createElement("p");
+        innerContent = `<b>Pinyin:</b> ${PinyinConverter.convert(response["result"].join(" ").replaceAll(regex,"").replaceAll(rdots,'.').replaceAll(rcommas,','))}`;
         p.innerHTML = innerContent;
         pinyintext.appendChild(p);
       });
@@ -209,15 +232,14 @@ document.getElementById('transcribe-button').addEventListener('click', function(
           contentType: "application/json",
           data: jsonEncoded,
             success: function(data) {
-            console.log(data["converted"]);
 
             hiraganatext.innerHTML = "";
-            let h = document.createElement("h");
+            let p = document.createElement("p");
             const rspaces = /[\s]*/g;
 
             let innerContent = `<b>Hiragana:</b> ${data["converted"].replaceAll(rspaces,"")}`;
-            h.innerHTML = innerContent;
-            hiraganatext.appendChild(h) 
+            p.innerHTML = innerContent;
+            hiraganatext.appendChild(p) 
           }
         });
       }
@@ -237,15 +259,14 @@ document.getElementById('transcribe-button').addEventListener('click', function(
           contentType: "application/json",
           data: jsonEncoded,
             success: function(data) {
-            console.log(data["converted"]);
 
             katakanatext.innerHTML = "";
-            let k = document.createElement("k");
+            let p = document.createElement("p");
             const rspaces = /[\s]*/g;
 
             let innerContent = `<b>Katakana:</b> ${data["converted"].replaceAll(rspaces,"")}`;
-            k.innerHTML = innerContent;
-            katakanatext.appendChild(k) 
+            p.innerHTML = innerContent;
+            katakanatext.appendChild(p) 
           }
         });
       }
@@ -265,15 +286,14 @@ document.getElementById('transcribe-button').addEventListener('click', function(
           contentType: "application/json",
           data: jsonEncoded,
             success: function(data) {
-            console.log(data["converted"]);
 
             romajitext.innerHTML = "";
-            let r = document.createElement("r");
+            let p = document.createElement("p");
             const rspaces = /[\s]*/g;
 
             let innerContent = `<b>Romaji:</b> ${wanakana.toRomaji(data["converted"], { upcaseKatakana: true })}`;
-            r.innerHTML = innerContent;
-            romajitext.appendChild(r) 
+            p.innerHTML = innerContent;
+            romajitext.appendChild(p) 
           }
         });
       }
@@ -285,7 +305,6 @@ document.getElementById('transcribe-button').addEventListener('click', function(
 
   function transcribeSentence(inputSentence, lang) {
     var IPASen = [];
-    console.log(lang);
     for (var word of inputSentence) {
       word = word.replace(/[&\/\\#,+()$~%'":*<>{}]/g, "");
       if (lang == "en-EN"){
@@ -293,14 +312,12 @@ document.getElementById('transcribe-button').addEventListener('click', function(
       } else if (lang == "en-US"){
         var IPAWord = US_dict[word];
       }
-      console.log(IPAWord);
       if (IPAWord == undefined) {
         IPASen.push('');
       } else {
         IPASen.push(IPAWord);
       }
     };
-    console.log(IPASen)
     return '/'+IPASen.join(" ")+'/';
   };
 
@@ -322,15 +339,52 @@ document.getElementById('transcribe-button').addEventListener('click', function(
   //   IPAText = []; //So the japanese IPA won't appear for know
   // }; 
 
-  console.log(IPAText)
+
   if (IPAText.length != 0){
     // document.getElementById("ipatext").innerHTML = '<b>IPA:</b> ' + IPAText.filter(checkifvalid).join(" ");
     ipatext.innerHTML = "";
     let p = document.createElement("p");
-    let innerContent = `<b>IPA:</b> ${IPAText.filter(checkifvalid).join(" ")}`;
+    let IPA = IPAText.filter(checkifvalid).join(" ");
+    let innerContent = `<b>IPA:</b> ${IPA}`;
     p.innerHTML = innerContent;
     ipatext.appendChild(p);
+
+    if (selectedLang == "en-EN"||selectedLang == "en-US") {
+    
+    p = document.createElement("p");
+    let xsampa = convertIPA(IPA, dict_xsampa);
+    innerContent = `<b>X-SAMPA:</b> ${xsampa}`;
+    p.innerHTML = innerContent;
+    xsampatext.appendChild(p);
+    
+    tipatext.innerHTML = "";
+    p = document.createElement("p");
+    let tipa = convertIPA(IPA, dict_tipa);
+    innerContent = `<b>TIPA:</b> ${tipa}`;
+    p.innerHTML = innerContent;
+    tipatext.appendChild(p);
     IPAText = [];
+    } else {
+      document.getElementById("xsampatext").style.display = "none";
+    };
+  };
+
+  function convertIPA(phrase, alphabet) {
+    var newTrans = [];
+    for (var letter of phrase) {
+      var newL = alphabet[letter];
+      if (newL == undefined) {
+        newTrans.push(letter);
+      } else {
+        newTrans.push(newL);
+      }
+    };
+    console.log(newTrans.join(" "));
+    if (alphabet == dict_tipa) {
+      return "\\textipa{"+newTrans.join("")+"}";
+    } else {
+      return newTrans.join("");
+    };
   };
   
   // if (TIPAText.length != 0){
@@ -342,6 +396,31 @@ document.getElementById('transcribe-button').addEventListener('click', function(
   };
   
 });
+
+//checking alphabets contents
+// checkCharas(UK_dict,dict_xsampa);
+// checkCharas(UK_dict,dict_tipa);
+// checkCharas(US_dict,dict_xsampa);
+// checkCharas(US_dict,dict_tipa);
+
+// function checkCharas(lang_dict, dict_alp){
+//   let allCharas = [];
+//   for (word in lang_dict){
+//     word = lang_dict[word];
+//     for (var letter of word){
+//       if (!(allCharas.includes(letter))){
+//         allCharas.push(letter);
+//       };
+//     };
+//   };
+//   let notIn = [];
+//   for (var l of allCharas){
+//     if (!(l in dict_alp)){
+//       notIn.push(l);
+//     }
+//   };
+//   console.log(notIn)
+// };
 
 // Voice recognition - needs to be at the bottom!
 

@@ -8,7 +8,10 @@
         <script type="text/javascript" src="script.js"></script>
         <script src="scripts/jquery-3.6.0.min.js"></script>
         <script src="https://kit.fontawesome.com/c55b3adb40.js" crossorigin="anonymous"></script>
-        <!-- dictionaries -->
+        <!-- ipa to xsampa & tipa dictionaries -->
+        <script type="text/javascript" src="xsampa.js"></script>
+        <script type="text/javascript" src="tipa.js"></script>
+        <!-- languages ipa dictionaries -->
         <script type="text/javascript" src="scripts/en_UK.js"></script>
         <script type="text/javascript" src="scripts/en_US.js"></script>
         <script type="text/javascript" src="scripts/zh_hans.js"></script>
@@ -29,18 +32,29 @@
                   <div id="moon"><i class="fa-solid fa-moon"></i></div>
             </div></div>
             
-            <!-- <div class = "mobile-menu"><i class="fa-solid fa-align-justify"></i></div> -->
+            <button id="mobile-button"><i class="fa-solid fa-bars"></i></button>
 
-            <navbar>
-                <a href="index.html">Home</a>
-                <a href="team.html">Team</a>
-                <a href="faq.html">FAQ</a>
-                <a href="tutorial.html">Tutorial</a>
-                <a href="credits.html">Credits</a>
-                <a href="donate.html">Donate</a>
-            </navbar>
+            <div id="menu">
+                    <a href="index.html">Home</a>
+                    <a href="team.html">Team</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="tutorial.html">Tutorial</a>
+                    <a href="credits.html">Credits</a>
+                    <a href="donate.html">Donate</a>
+            </div>
 
         </header>
+
+        <div id="mobile-menu">
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="credits.html">Credits</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            </ul>
+        </div>
 
     <!-- Main -->
         <main>
@@ -79,14 +93,15 @@
                 </div>
 
             <!-- Output -->
-                <section class="text-section" id = "output-text">
+                <section class="text-section" id = "out-text">
                     <p class="text-output" id="romajitext"></p>
                     <p class="text-output" id="hiraganatext"></p>
                     <p class="text-output" id="katakanatext"></p>
+                    <p class="text-output" id="numpinyintext"></p>
                     <p class="text-output" id="pinyintext"></p>
                     <p class="text-output" id="ipatext"></p>
-                    <p class="text-output" id="x-sampa-text"></p>
-                    <p class="text-output" id="tipa-text"></p>
+                    <p class="text-output" id="xsampatext"></p>
+                    <p class="text-output" id="tipatext"></p>
                  </section>
                 
             </section>
