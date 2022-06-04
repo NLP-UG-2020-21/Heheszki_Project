@@ -48,10 +48,19 @@ function switchTheme() {
         document.getElementById("moon").style.display = "none";
         document.getElementById("sun").style.display = "block";
   }
-}
+};
 
-
+try {
 document.getElementById('mobile-button').addEventListener('click', displaymenu);
+} catch {
+
+};
+
+try {
+document.getElementById('mobile-button-sub').addEventListener('click', displaymenusub);
+} catch {
+  
+};
 
 function displaymenu() {
   if (document.getElementById("mobile-menu").style.display == "none"||document.getElementById("mobile-menu").style.display == ""){
@@ -60,8 +69,6 @@ function displaymenu() {
     document.getElementById("mobile-menu").style.display = "none";
   }
 };
-
-document.getElementById('mobile-button-sub').addEventListener('click', displaymenusub);
 
 function displaymenusub() {
   if (document.getElementById("mobile-menu-sub").style.display == "none"||document.getElementById("mobile-menu-sub").style.display == ""){
@@ -133,7 +140,6 @@ document.getElementById('transcribe-button').addEventListener('click', function(
     for (const sentence of inputText) {
       var sentenceArray = sentence.split(" ").filter((a) => a);
       IPAText.push(transcribeSentence(sentenceArray, selectedLang));
-      console.log('starting IPA:', IPAText);
     }
   };
 
@@ -379,7 +385,6 @@ document.getElementById('transcribe-button').addEventListener('click', function(
         newTrans.push(newL);
       }
     };
-    console.log(newTrans.join(" "));
     if (alphabet == dict_tipa) {
       return "\\textipa{"+newTrans.join("")+"}";
     } else {
@@ -398,6 +403,7 @@ document.getElementById('transcribe-button').addEventListener('click', function(
 });
 
 //checking alphabets contents
+
 // checkCharas(UK_dict,dict_xsampa);
 // checkCharas(UK_dict,dict_tipa);
 // checkCharas(US_dict,dict_xsampa);
