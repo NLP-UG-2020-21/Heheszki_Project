@@ -10,18 +10,40 @@
     </head>
     <body>
         <header>
-            <div id = "header-logo">Uniwersytet Gdański</div>
-            
-            <navbar>
-                <a href="index.html">Home</a>
-                <a href="team.html">Team</a>
-                <a href="faq.html">FAQ</a>
-                <a href="tutorial.html">Tutorial</a>
-                <a href="credits.html">Credits</a>
-                <a href="donate.html">Donate</a>
-            </navbar>
+            <div id = "header-switch"><div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>    
+              </label>
+              <div class = "slider-label">
+                  <div id="sun" style="display:none"><i class="fa-solid fa-sun"></i></div>
+                  <div id="moon"><i class="fa-solid fa-moon"></i></div>
+            </div></div>
+
+            <button id="mobile-button" style="display:none"><i class="fa-solid fa-bars"></i></button>
+            <button id="mobile-button-sub"><i class="fa-solid fa-bars"></i></button>
+
+            <div id="menu">
+                    <a href="index.html">Home</a>
+                    <a href="team.html">Team</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="tutorial.html">Tutorial</a>
+                    <a href="credits.html">Credits</a>
+                    <a href="donate.html">Donate</a>
+            </div>
 
         </header>
+
+        <div id="mobile-menu-sub">
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="credits.html">Credits</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            </ul>
+        </div>
 
     <!-- Main -->
         <main>

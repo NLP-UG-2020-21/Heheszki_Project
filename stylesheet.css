@@ -10,6 +10,7 @@
   --dropdown-text: #ffffff;
   --dark-mode-slider: #ccc;
   --links-hover: #276166;
+  --out-border: 0, 0, 0;
 }
 
 [data-theme="dark"] {
@@ -23,6 +24,7 @@
   --dropdown-text: #ffffff;
   --dark-mode-slider: #0e1311;
   --links-hover: #276166;
+  --out-border: 255, 255, 255;
 }
 
 /* styling body */
@@ -118,13 +120,13 @@ input:checked + .slider:before {
 }
 
 /* header menu */
-navbar{
+#menu{
   float: right;
   text-align: center;
   padding: 20px 16px;
 }
 
-navbar a {
+#menu a {
   color: var(--header-links);
   text-decoration: none;
   height: 100%;
@@ -132,11 +134,30 @@ navbar a {
   font-size: 15px;
 }
 
-navbar a:hover {
+#menu a:hover {
   color: var(--header-links-hover);
 }
 
-.mobile-menu {
+#mobile-button {
+  display: none;
+}
+#mobile-button-sub {
+  display: none;
+}
+
+#mobile-menu {
+  display: none;
+}
+
+#mobile-menu-sub {
+  display: none;
+}
+
+#mobile-menu li{
+  display: none;
+}
+
+#mobile-menu-sub li{
   display: none;
 }
 
@@ -226,9 +247,22 @@ main {
   text-align: justify;
 }
 
-#output-text {
+#out-text {
   padding: 10px;
 }
+
+.text-output {
+  background-color: var(--text-input-area);
+}
+
+.text-output p {
+  padding: 10px;
+  /* border: 1px solid rgba(var(--out-border), 0.5); */
+}
+
+/* .text-output:hover {
+  background-color: var(--accent);
+} */
 
 /* donate */
 
@@ -292,7 +326,8 @@ a:hover {
 
 /* For mobile - adjust later */
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 600px) {
+
   body {
     margin-right: 8%;
     margin-left: 8%;
@@ -302,15 +337,11 @@ a:hover {
   /* header */
   header {
     position: fixed;;
-    height: 30px;
+    height: 40px;
+    top: 0;
     width: 100%;
     overflow: hidden;
-  }
-  
-  #header-logo {
-    padding: 18px 16px;
-    font-size: 23px;
-    margin-left: 30px;
+    z-index: 100;
   }
   
   
@@ -333,31 +364,122 @@ a:hover {
   }
   
   input:checked + .slider:before {
-    transform: translateX(15px);
+    transform: translateX(-14px);
   }
   
   /* header menu */
-  navbar{
+
+  #mobile-button {
+    display: block;
     float: right;
-    text-align: center;
-    padding: 0px 1px;
+    margin-right: 2px;
+    margin-top: 5px;
+    font-size: 25px;
+    color: var(--header-links);
+    background-color: var(--accent);
+    border: none;
   }
-  
-  navbar a {
+
+  #mobile-menu {
+      display: none;
+      z-index: 1;
+      position: fixed;
+      margin-right: 0;
+      margin-left: 60%;
+      margin-top: -40px;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      padding-top: 25px;
+      background-color: var(--accent);
+  }
+
+  #mobile-menu a {
     color: var(--header-links);
     text-decoration: none;
     height: 100%;
     margin-right: 25px;
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  
+  @media only screen and (max-device-width: 300px) {
+    #mobile-menu a {
     font-size: 15px;
+    }
+  }
+
+  #mobile-menu li {
+    display: block;
+    list-style: none;
+    margin-left: -40px;
   }
   
-  navbar a:hover {
+  #mobile-menu a:hover {
     color: var(--header-links-hover);
   }
 
-  .mobile-menu {
+  #mobile-button {
     display: block;
-    
+    float: right;
+    margin-right: 2px;
+    margin-top: 5px;
+    font-size: 25px;
+    color: var(--header-links);
+    background-color: var(--accent);
+    border: none;
+  }
+
+  #mobile-button-sub {
+    display: block;
+    float: right;
+    margin-right: 2px;
+    margin-top: 5px;
+    font-size: 25px;
+    color: var(--header-links);
+    background-color: var(--accent);
+    border: none;
+  }
+
+  #mobile-menu-sub {
+      display: none;
+      z-index: 1;
+      position: fixed;
+      margin-right: 0;
+      margin-left: 60%;
+      margin-top: -70px;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      padding-top: 25px;
+      background-color: var(--accent);
+  }
+
+  #mobile-menu-sub a {
+    color: var(--header-links);
+    text-decoration: none;
+    height: 100%;
+    margin-right: 25px;
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  
+  @media only screen and (max-device-width: 300px) {
+    #mobile-menu-sub a {
+    font-size: 15px;
+    }
+  }
+
+  #mobile-menu-sub li {
+    display: block;
+    list-style: none;
+    margin-left: -40px;
+  }
+  
+  #mobile-menu-sub a:hover {
+    color: var(--header-links-hover);
   }
   
   /* main */
@@ -377,5 +499,8 @@ a:hover {
     margin-top: 70px;
   }
 
+  #github {
+    display: flex;
+  }
   
 }
