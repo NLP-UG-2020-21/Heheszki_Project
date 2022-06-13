@@ -51,15 +51,51 @@
                 <section class="text-section"><p>Do you want to transcribe your text using International Phonetic Alphabet?</br>
             Nothing easier!</p>
 
-        <p>Trans it! supports only Polish and English at the moment.</br>
+        <p><i>Trans it!</i> supports only Chinese and English at the moment. Stay tuned, more languages coming!</br>
                 Choose your preferred language in the menu and transcribe!</p>
  
-        <p>Simply paste or type your text in the field (below? above?) and click "trans it" button.</p>
+        <p>Simply paste or type your text in the field on the Home page and click the "Transcribe" button :)</p>
 
 
-        <section><p>FEEDBACK:
+    <section><p><b>FEEDBACK</b>:
 
-        Did you enjoy it? Do you want to give us a hint? Leave a comment! <tu mogłby być a href do comment section></p></section>
+        Did you enjoy it? Do you want to give us a hint? Leave a comment in the section below!</p></section>
+    
+    <!-- Comment section -->
+    
+    <!-- Vue JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    
+    <script>
+    $(document).ready(function(){ 
+
+        $(".primaryContained").on('click', function(){
+        $(".comment").addClass("commentClicked");
+      });//end click
+      $("textarea").on('keyup.enter', function(){
+        $(".comment").addClass("commentClicked");
+      });//end keyup
+      });//End Function
+
+    new Vue({
+        el: "#app",
+        data:{
+           title: 'Add a comment',
+          newItem: '',
+          item: [],
+        },
+        methods:{
+          addItem  (){
+          this.item.push(this.newItem);
+            this.newItem = "";
+          }
+      }
+
+      });
+
+    </script>
         </main>
      </body>
 </html>
